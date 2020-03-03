@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "glob": "^7.1.6",
-    "html-minifier": "^4.0.0"
+    "html-minifier-terser": "^5.0.4"
   },
   "devDependencies": {
     "standard": "14.3.1"

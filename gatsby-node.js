@@ -1,7 +1,7 @@
 const fs = require('fs')
 const { promisify } = require('util')
 const glob = require('glob')
-const minifier = require('html-minifier')
+const minifier = require('html-minifier-terser')
 
 const globAsync = promisify(glob)
 const readFile = promisify(fs.readFile)
