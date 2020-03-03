@@ -2,6 +2,7 @@ const fs = require('fs')
 const { promisify } = require('util')
 const glob = require('glob')
 const minifier = require('html-minifier-terser')
+const sanitizeHtml = require('sanitize-html');
 
 const globAsync = promisify(glob)
 const readFile = promisify(fs.readFile)
@@ -23,7 +24,7 @@ exports.onPostBuild = async (_, pluginOptions) => {
   const matches = await globAsync('public/**/*.html', { nodir: true })
   await Promise.all(matches.map(async item => {
     const contents = await readFile(item, 'utf8')
-    const results = minifier.minify(contents, options)
+    const results = minifier.minify(sanitizeHtml(contents), options)
     return writeFile(item, results)
   }))
 }
